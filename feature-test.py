@@ -1,1 +1,2 @@
-hi this new branch test
+thistuple = ("apple", "banana", "cherry")
+print(thistuple[1])
