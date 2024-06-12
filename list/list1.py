@@ -1,100 +1,161 @@
-from itertools import permutations
+# Question: How do you create a list in Python?
+# Creating a list with five elements
+my_list = [1, 2, 3, 4, 5]
+# Printing the list
+print(my_list)
+# Output: [1, 2, 3, 4, 5]
 
-# Function to find the second largest number in a list
-def second_largest(numbers):
-    unique_numbers = list(set(numbers))  # Remove duplicates
-    unique_numbers.sort(reverse=True)    # Sort in descending order
-    return unique_numbers[1] if len(unique_numbers) >= 2 else None  # Return second largest
+# Question: How do you access elements in a list using indices?
+my_list = [1, 2, 3, 4, 5]
+# Accessing the first element
+print(my_list[0])  # Output: 1
+# Accessing the last element
+print(my_list[-1]) # Output: 5
 
-# Function to rotate a list by k positions
+# Question: How do you update elements in a list?
+my_list = [1, 2, 3, 4, 5]
+# Updating the third element (index 2)
+my_list[2] = 10
+# Printing the updated list
+print(my_list)  # Output: [1, 2, 10, 4, 5]
+
+
+# Question: How do you append an element to a list?
+my_list = [1, 2, 3, 4, 5]
+# Appending the number 6 to the list
+my_list.append(6)
+# Printing the list after appending
+print(my_list)  # Output: [1, 2, 3, 4, 5, 6]
+
+# Question: How do you remove an element from a list?
+my_list = [1, 2, 3, 4, 5]
+# Removing the number 3 from the list
+my_list.remove(3)
+# Printing the list after removing
+print(my_list)  # Output: [1, 2, 4, 5]
+
+# Question: How do you pop (remove and return) the last element from a list?
+my_list = [1, 2, 3, 4, 5]
+# Popping the last element
+popped_element = my_list.pop()
+# Printing the popped element
+print(popped_element)  # Output: 5
+# Printing the list after popping
+print(my_list)         # Output: [1, 2, 3, 4]
+
+# Question: How do you square each number in a list using list comprehensions?
+my_list = [1, 2, 3, 4, 5]
+# Squaring each element in the list
+squared_list = [x**2 for x in my_list]
+# Printing the list of squared numbers
+print(squared_list)  # Output: [1, 4, 9, 16, 25]
+
+# Question: How do you filter even numbers from a list using list comprehensions?
+my_list = [1, 2, 3, 4, 5, 6]
+# Filtering even numbers
+even_list = [x for x in my_list if x % 2 == 0]
+# Printing the list of even numbers
+print(even_list)  # Output: [2, 4, 6]
+
+# Question: How do you filter even numbers from a list using list comprehensions?
+my_list = [1, 2, 3, 4, 5, 6]
+# Filtering even numbers
+even_list = [x for x in my_list if x % 2 == 0]
+# Printing the list of even numbers
+print(even_list)  # Output: [2, 4, 6]
+
+# Question: How do you concatenate two lists?
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+# Concatenating list1 and list2
+concatenated_list = list1 + list2
+# Printing the concatenated list
+print(concatenated_list)  # Output: [1, 2, 3, 4, 5, 6]
+
+# Question: How do you find the length of a list?
+my_list = [1, 2, 3, 4, 5]
+# Finding the length of the list
+print(len(my_list))  # Output: 5
+
+# Question: How do you find the sum of all elements in a list?
+my_list = [1, 2, 3, 4, 5]
+# Calculating the sum of the elements
+total_sum = sum(my_list)
+# Printing the sum
+print(total_sum)  # Output: 15
+
+# Question: How do you find the maximum and minimum elements in a list?
+my_list = [1, 2, 3, 4, 5]
+# Finding the maximum element
+max_element = max(my_list)
+# Finding the minimum element
+min_element = min(my_list)
+# Printing the max and min elements
+print(f"Max: {max_element}, Min: {min_element}")  # Output: Max: 5, Min: 1
+
+# Question: How do you flatten a nested list?
+nested_list = [[1, 2, 3], [4, 5], [6, 7, 8]]
+# Flattening the nested list
+flat_list = [item for sublist in nested_list for item in sublist]
+# Printing the flattened list
+print(flat_list)  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
+
+# Question: How do you transpose a matrix (2D list)?
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+# Transposing the matrix
+transposed_matrix = [[row[i] for row in matrix] for i in range(len(matrix[0]))]
+# Printing the transposed matrix
+print(transposed_matrix)  # Output: [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+
+# Question: How do you remove duplicates from a list?
+my_list = [1, 2, 2, 3, 4, 4, 5]
+# Removing duplicates by converting to a set and back to a list
+unique_list = list(set(my_list))
+# Printing the list without duplicates
+print(unique_list)  # Output: [1, 2, 3, 4, 5]
+
+# Question: How do you find the intersection of two lists?
+list1 = [1, 2, 3, 4]
+list2 = [3, 4, 5, 6]
+# Finding the intersection
+intersection = [x for x in list1 if x in list2]
+# Printing the intersection
+print(intersection)  # Output: [3, 4]
+
+# Question: How do you rotate a list by k elements?
 def rotate_list(lst, k):
-    k = k % len(lst)  # Handle cases where k is larger than list length
-    return lst[-k:] + lst[:-k]  # Rotate list
+    # Rotating the list by slicing
+    return lst[-k:] + lst[:-k]
 
-# Function to flatten a nested list
-def flatten(nested_list):
-    flat_list = []
-    for item in nested_list:
-        if isinstance(item, list):
-            flat_list.extend(flatten(item))  # Recursively flatten
-        else:
-            flat_list.append(item)  # Append non-list item
-    return flat_list
+my_list = [1, 2, 3, 4, 5]
+# Rotating the list by 2 elements
+rotated_list = rotate_list(my_list, 2)
+# Printing the rotated list
+print(rotated_list)  # Output: [4, 5, 1, 2, 3]
 
-# Function to find all pairs in a list with a given sum
-def find_pairs(lst, target_sum):
-    pairs = []
-    seen = set()
-    for num in lst:
-        complement = target_sum - num
-        if complement in seen:
-            pairs.append((complement, num))  # Add pair to result
-        seen.add(num)  # Add number to seen set
-    return pairs
+# Question: How do you find the second largest number in a list?
+my_list = [1, 2, 3, 4, 5]
+# Removing duplicates by converting to a set and back to a list
+unique_list = list(set(my_list))
+# Sorting the list
+unique_list.sort()
+# Finding the second largest element
+second_largest = unique_list[-2]
+# Printing the second largest element
+print(second_largest)  # Output: 4
 
-# Function to find the length of the longest increasing subsequence in a list
-def longest_increasing_subsequence(nums):
-    if not nums:
-        return 0  # Return 0 for empty list
+# Question: How do you split a list into even and odd numbers using list comprehensions?
+my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# Splitting the list into even numbers
+even_numbers = [x for x in my_list if x % 2 == 0]
+# Splitting the list into odd numbers
+odd_numbers = [x for x in my_list if x % 2 != 0]
+# Printing the lists of even and odd numbers
+print("Even numbers:", even_numbers)  # Output: Even numbers: [2, 4, 6, 8, 10]
+print("Odd numbers:", odd_numbers)    # Output: Odd numbers: [1, 3, 5, 7, 9]
 
-    dp = [1] * len(nums)  # Initialize DP array
-    for i in range(1, len(nums)):
-        for j in range(i):
-            if nums[i] > nums[j]:
-                dp[i] = max(dp[i], dp[j] + 1)  # Update DP value
-    return max(dp)  # Return maximum value in DP array
 
-# Function to generate all permutations of a list
-def all_permutations(lst):
-    return list(permutations(lst))  # Generate permutations
 
-# Function to find the most frequent element(s) in a list
-def most_frequent(lst):
-    frequency = {}
-    for item in lst:
-        if item in frequency:
-            frequency[item] += 1  # Increment frequency
-        else:
-            frequency[item] = 1  # Initialize frequency
-    max_frequency = max(frequency.values())
-    most_frequent_elements = [key for key, value in frequency.items() if value == max_frequency]  # Find max frequency elements
-    return most_frequent_elements
 
-# Function to perform zigzag conversion of a list
-def zigzag_conversion(lst, numRows):
-    if numRows == 1 or numRows >= len(lst):
-        return lst  # Return original list if no zigzag needed
 
-    zigzag = [[] for _ in range(numRows)]
-    index, step = 0, 1
 
-    for char in lst:
-        zigzag[index].append(char)  # Add character to zigzag row
-        if index == 0:
-            step = 1
-        elif index == numRows - 1:
-            step = -1
-        index += step  # Move to next row
-
-    return [item for sublist in zigzag for item in sublist]  # Flatten zigzag list
-
-# Sample data for testing
-numbers = [10, 20, 4, 45, 99, 99]
-lst = [1, 2, 3, 4, 5]
-nested_list = [1, [2, [3, 4], 5], 6, [7, 8]]
-target_sum = 7
-nums = [10, 9, 2, 5, 3, 7, 101, 18]
-lst_perm = [1, 2, 3]
-freq_list = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]
-zigzag_list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
-numRows = 3
-
-# Function calls for demonstration with individual print statements
-print("Second Largest Number:", second_largest(numbers))
-print("Rotated List:", rotate_list(lst, 2))
-print("Flattened List:", flatten(nested_list))
-print("Pairs with sum", target_sum, ":", find_pairs(lst, target_sum))
-print("Length of Longest Increasing Subsequence:", longest_increasing_subsequence(nums))
-print("All Permutations:", all_permutations(lst_perm))
-print("Most Frequent Element(s):", most_frequent(freq_list))
-print("Zigzag Conversion:", zigzag_conversion(zigzag_list, numRows))
