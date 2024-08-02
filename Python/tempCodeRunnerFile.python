@@ -1,0 +1,9 @@
+
+x = 21
+y = 25
+
+
+
+# is not
+if x is not y:
+  print(x is not y)
